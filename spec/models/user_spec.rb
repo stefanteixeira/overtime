@@ -24,6 +24,16 @@ RSpec.describe User, type: :model do
       @user.phone = nil
       expect(@user).not_to be_valid
     end
+
+    it 'requires the phone attribute to contain only integers' do
+      @user.phone = 'abcdeabcdefgh'
+      expect(@user).not_to be_valid
+    end
+
+    it 'requires the phone attribute to have only 13 characters' do
+      @user.phone = '12345678901234'
+      expect(@user).not_to be_valid
+    end
   end
 
   describe 'custom name methods' do
